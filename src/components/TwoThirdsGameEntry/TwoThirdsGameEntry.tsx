@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { BrowserProvider, ethers, parseUnits, getDefaultProvider } from 'ethers';
 import twoThirdsGame from '../Contracts/twoThirdsGameABI.json';
 import { getInstance } from '../../fhevmjs';
+import { FetchBalance } from '../FetchBalance';
 
 // create contract object
-const contractAddress = '0x24f9d9db4fcc282e6f679f4198f7292e318bd791';
+const contractAddress = '0x17337238c7207574D81F9f1C749C33c1193FD3F7';
 const contractABI = twoThirdsGame;
 
 export const EnterGameButton = () => {
@@ -17,7 +18,7 @@ export const EnterGameButton = () => {
         let provider;
         if (window.ethereum == null) {
             console.log("MetaMask not installed; using read-only defaults")
-            provider = getDefaultProvider("inco");
+            provider = getDefaultProvider();
         } else {
             provider = new BrowserProvider(window.ethereum)
             signer = await provider.getSigner();
@@ -33,30 +34,23 @@ export const EnterGameButton = () => {
         // create contract object and execute transaction
         const ttgContract = new ethers.Contract(contractAddress, contractABI, signer);
         const entryValue = parseUnits("0.01", 18);
-        // const balance = await provider.getBalance(signer);
         const value = parseInt(entry, 10);
-        if (!Number.isInteger(value) || value < 0 || value > 100) {alert('Please select a whole number between 0 and 100')}
+        if (!Number.isInteger(value) || value < 0 || value > 100) {alert('Please select a whole number between 0 and 100')};
 
         const encryptedUint32 = instance.encrypt32(parseInt(entry, 10));
 
         try {
-            const testing = await ttgContract.enterGame.staticCall(encryptedUint32, {value: entryValue})
+            const testing = await ttgContract.enterGame(encryptedUint32, {value: entryValue})
             console.log(testing);
+
         } catch (error) {
+            
             if (error.message.includes('player already has a submission')) {
                 alert('You already entered the game');
             } else if (error.message.includes('Send 0.01 ETH to enter')) {
                 alert('Send at least 0.01 ETH to enter')
             } else if (error.message.includes('The game has ended')) {
                 alert('The game has ended')
-            } else {
-                const tx = await ttgContract.enterGame(
-                    encryptedUint32,
-                    {value: entryValue}
-                );
-                // wait for transaction to be mined
-                await tx.wait();
-                console.log(tx);
             }
         }
     };
@@ -64,10 +58,13 @@ export const EnterGameButton = () => {
     return (
         <div>
             <p>
-                Each player will submit a whole number between 0 and 100.
+                Each player submits a whole number between 0 and 100.
             </p>
             <p>
-                The winner will be the player who guesses closest to two thirds of the average.
+                The player who guesses closest to two thirds of the average wins and collects the pot.
+            </p>
+            <p>
+                It costs 0.01 INCO to enter.
             </p>
             <input
                 type="number"
@@ -81,6 +78,8 @@ export const EnterGameButton = () => {
             <button onClick={handleClick}>
                 {/* {entry ? 'Complete!' : 'Enter Game'} */}Enter Game
             </button>
+            <p></p>
+            <FetchBalance/>
         </div>
     );
 };

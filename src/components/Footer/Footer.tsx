@@ -2,12 +2,12 @@ import './Footer.css';
 import twitterLogo from '../Logos/twitter-logo-black.png';
 import discordLogo from '../Logos/discord-logo-black.png';
 import telegramLogo from '../Logos/telegram-logo.png';
-import { FetchBalance } from '../FetchBalance';
+// import { FetchBalance } from '../FetchBalance';
 
 export const Footer = () => {
   return (
     <div>
-      <FetchBalance className='footerLeftStyle' />
+      {/* <FetchBalance className='footerLeftStyle' /> */}
       <footer className='footerRightStyle'>
         {/* <FetchBalance/> */}
         <a href='https://twitter.com' target='_blank' rel='noopener noreferrer' className='iconStyle'>
