@@ -1,0 +1,24 @@
+.footerRightStyle {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 1em;
+    /* background: #333; Optional: Adds a background color to the footer */
+  }
+  
+.footerLeftStyle {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  /* background: #333; Optional: Adds a background color to the footer */
+}
+
+.iconStyle {
+  margin: 0 0.5em; /* Adds some spacing between icons */
+}
+  
+.logoStyle {
+  width: 30px;
+  height: auto;
+}

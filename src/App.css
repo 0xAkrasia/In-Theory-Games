@@ -1,8 +1,9 @@
 #root {
-  box-sizing: border-box;
-  max-width: 90vw;
-  margin: 0 auto;
+  /* box-sizing: border-box; */
+  width: 100%;
+  /* margin: 0 auto; */
   text-align: center;
+  /* display: flex; */
 }
 
 .read-the-docs {

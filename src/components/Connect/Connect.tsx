@@ -1,15 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { BrowserProvider } from 'ethers';
-
+import { BrowserProvider, Eip1193Provider } from 'ethers';
 import './Connect.css';
-import { Eip1193Provider } from 'ethers';
 import { createFhevmInstance } from '../../fhevmjs';
 
-const AUTHORIZED_CHAIN_ID = ['0x1f49', '0x1f4a', '0x1f4b', '0x2328'];
+const AUTHORIZED_CHAIN_ID = [`0x${Number(9090).toString(16)}`];
 
-export const Connect: React.FC<{
-  children: (account: string, provider: any) => React.ReactNode;
-}> = ({ children }) => {
+// export const Connect: React.FC<{
+//   children: (account: string, provider: any) => React.ReactNode;
+// }> = ({ children }) => {
+export const Connect = () => {
   const [connected, setConnected] = useState(false);
   const [validNetwork, setValidNetwork] = useState(false);
   const [account, setAccount] = useState<string>('');
@@ -89,20 +88,24 @@ export const Connect: React.FC<{
         params: [
           {
             chainId: AUTHORIZED_CHAIN_ID[0],
-            rpcUrls: ['https://devnet.zama.ai/'],
-            chainName: 'Zama Devnet',
+            rpcUrls: ['https://evm-rpc.inco.network'],
+            chainName: 'Inco Network',
             nativeCurrency: {
-              name: 'ZAMA',
-              symbol: 'ZAMA',
+              name: 'INCO',
+              symbol: 'INCO',
               decimals: 18,
             },
-            blockExplorerUrls: ['https://main.explorer.zama.ai'],
+            blockExplorerUrls: ['https://explorer.inco.network/'],
           },
         ],
       });
     }
     await refreshNetwork();
   }, [refreshNetwork]);
+
+  const formatAddress = (address: string) => {
+    return `${address.substring(0, 4)}...${address.substring(address.length - 4)}`;
+  };
 
   const child = useMemo<React.ReactNode>(() => {
     if (!account || !provider) {
@@ -112,37 +115,29 @@ export const Connect: React.FC<{
     if (!validNetwork) {
       return (
         <div>
-          <p>You're not on the correct network</p>
-          <p>
             <button className="Connect__button" onClick={switchNetwork}>
-              Switch to Zama Devnet
+              Switch to Inco
             </button>
-          </p>
         </div>
       );
     }
-
-    return children(account, provider);
-  }, [account, provider, validNetwork, children, switchNetwork]);
+    else if (connected) {
+      return (
+        <div>
+          <button onClick={connect}>
+            {`${formatAddress(account)}`}
+          </button>
+        </div>
+      );
+    }
+  }, [account, provider, validNetwork, switchNetwork, connected, connect, formatAddress]);
 
   if (error) {
     return <p>No wallet has been found.</p>;
   }
 
-  const connectInfos = (
-    <div className="Connect__info">
-      {!connected && (
-        <button className="Connect__button" onClick={connect}>
-          Connect your wallet
-        </button>
-      )}
-      {connected && <div className="Connect__account">Connected with {account}</div>}
-    </div>
-  );
-
   return (
     <>
-      {connectInfos}
       <div className="Connect__child">{child}</div>
     </>
   );

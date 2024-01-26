@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Devnet } from './components/Devnet';
 import { init } from './fhevmjs';
 import './App.css';
-import { Connect } from './components/Connect';
+import { Navigation } from './components/Navigation';
+import { Footer } from './components/Footer';
+import { EnterGameButton } from './components/TwoThirdsGameEntry';
 
 function App() {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -19,11 +20,11 @@ function App() {
 
   return (
     <>
-      <h1>fhevmjs</h1>
-      <Connect>{(account, provider) => <Devnet />}</Connect>
-      <p className="read-the-docs">
-        <a href="https://docs.zama.ai/fhevm">See the documentation for more information</a>
-      </p>
+      <Navigation/>
+      <h1>In Theory Games</h1>
+      <h2>Two Thirds Game</h2>
+      <EnterGameButton/>
+      <Footer/>
     </>
   );
 }
