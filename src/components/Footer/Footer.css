@@ -1,24 +1,39 @@
-.footerRightStyle {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    padding: 1em;
-    /* background: #333; Optional: Adds a background color to the footer */
-  }
-  
-.footerLeftStyle {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  padding: 1em;
-  /* background: #333; Optional: Adds a background color to the footer */
+.footerImage {
+  width: 80px;
+  height: auto;
 }
 
 .iconStyle {
   margin: 0 0.5em; /* Adds some spacing between icons */
 }
-  
+
 .logoStyle {
   width: 30px;
   height: auto;
+}
+
+.footerStyle {
+  display: flex;
+  justify-content: space-between; /* Adjusted for even spacing across the top */
+  align-items: center; /* Optional: Aligns items vertically in the center */
+  width: 100%; /* Ensures the nav bar spans the full width */
+  background: #333; /* Background color for the nav bar */
+  padding-top: 10px;    /* Add desired top padding */
+  padding-bottom: 10px; /* Add desired bottom padding */
+  position: fixed; /* Fixed position */
+  bottom: 0; /* Stick to the top */
+  left: 0; /* Align to the left */
+}
+.footerRow {
+  flex: 1; /* Make each section take up equal space */
+  display: flex;
+  align-items: center;
+}
+
+.footerLeft {
+  justify-content: right;
+}
+
+.footerRight {
+  justify-content: left;
 }

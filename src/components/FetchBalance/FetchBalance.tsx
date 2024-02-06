@@ -2,9 +2,8 @@ import React, { useState, useEffect, HTMLAttributes } from 'react';
 import { ethers } from 'ethers';
 
 const provider = new ethers.JsonRpcProvider(`https://evm-rpc.inco.network`);
-const address = '0x17337238c7207574D81F9f1C749C33c1193FD3F7';
+const address = '0x1a83f1d0ea8e2a2925B2062843CF82bAff516762';
 
-// Extending the standard HTML div attributes
 interface FetchBalanceProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const FetchBalance: React.FC<FetchBalanceProps> = (props) => {
@@ -15,10 +14,6 @@ export const FetchBalance: React.FC<FetchBalanceProps> = (props) => {
             try {
                 const rawBalance = await provider.getBalance(address);
                 const formattedBal = ethers.formatEther(rawBalance);
-                // const dollarFormattedBal = new Intl.NumberFormat('en-US', {
-                //     style: 'currency',
-                //     currency: 'USD'
-                // }).format(parseFloat(formattedBal));
                 setBalance(formattedBal);
             } catch (error) {
                 console.error('Error fetching balance:', error);
@@ -29,11 +24,9 @@ export const FetchBalance: React.FC<FetchBalanceProps> = (props) => {
         fetchBalance();
     }, []);
 
-    // Destructure the className from props
     const { className, ...rest } = props;
 
     return (
         <div className={className} {...rest}>Pot: {balance} INCO</div>
     );
 };
-

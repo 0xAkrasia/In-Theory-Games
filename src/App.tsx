@@ -4,6 +4,7 @@ import './App.css';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { EnterGameButton } from './components/TwoThirdsGameEntry';
+import { FetchPlayerCount } from './components/FetchPlayerCount';
 
 function App() {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -21,9 +22,9 @@ function App() {
   return (
     <>
       <Navigation/>
-      <h1>In Theory Games</h1>
       <h2>Two Thirds Game</h2>
       <EnterGameButton/>
+      <FetchPlayerCount/>
       <Footer/>
     </>
   );

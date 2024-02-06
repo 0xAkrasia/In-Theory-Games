@@ -1,25 +1,22 @@
 import './Footer.css';
-import twitterLogo from '../Logos/twitter-logo-black.png';
-import discordLogo from '../Logos/discord-logo-black.png';
-import telegramLogo from '../Logos/telegram-logo.png';
-// import { FetchBalance } from '../FetchBalance';
+import akrasiaPFP from '../Logos/Akrasia round name.png';
+import incoLogo from '../Logos/Inco.png';
 
 export const Footer = () => {
   return (
-    <div>
-      {/* <FetchBalance className='footerLeftStyle' /> */}
-      <footer className='footerRightStyle'>
-        {/* <FetchBalance/> */}
-        <a href='https://twitter.com' target='_blank' rel='noopener noreferrer' className='iconStyle'>
-          <img src={twitterLogo} alt='Twitter' className='logoStyle' />
+    <footer className='footerStyle'> 
+      <div className='footerRow footerLeft'>
+        <a href='https://twitter.com/0xAkrasia' target='_blank' rel='noopener noreferrer'>
+          <div></div>
+          <img src={akrasiaPFP} alt="Akrasia Twitter" className="footerImage"></img>
         </a>
-        <a href='https://discord.com' target='_blank' rel='noopener noreferrer' className='iconStyle'>
-          <img src={discordLogo} alt='Discord' className='logoStyle' />
+      </div>
+      +
+      <div className='footerRow footerRight'>
+        <a href='https://twitter.com/inconetwork' target='_blank' rel='noopener noreferrer'>
+          <img src={incoLogo} alt="Inco Twitter" className="footerImage"></img>
         </a>
-        <a href='https://telegram.org' target='_blank' rel='noopener noreferrer' className='iconStyle'>
-          <img src={telegramLogo} alt='Telegram' className='logoStyle' />
-        </a>
-      </footer>
-    </div>
+      </div>
+    </footer>
   );
 };

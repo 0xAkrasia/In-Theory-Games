@@ -6,13 +6,11 @@ export const Navigation = () => {
   return (
     <nav className='navStyle'>
       <div className='navRow'>
-        <a href='#about' className='navItemStyle'>About</a>
-        <a href='#blog' className='navItemStyle'>Blog</a>
-        <a href='#stats' className='navItemStyle'>Stats</a>
-        <a href='#documentation' className='navItemStyle'>Documentation</a>
+        <a href='#documentation' className='navItemStyle'>About</a>
       </div>
       <div className='navRow'>
         <img src={inTheoryGamesLogo} alt='In Theory Games Logo' className='logoStyle' />
+        <h3>In Theory Games</h3>
       </div>
       <div className='navRow'>
         <Connect/>

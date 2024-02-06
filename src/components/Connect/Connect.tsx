@@ -5,9 +5,6 @@ import { createFhevmInstance } from '../../fhevmjs';
 
 const AUTHORIZED_CHAIN_ID = [`0x${Number(9090).toString(16)}`];
 
-// export const Connect: React.FC<{
-//   children: (account: string, provider: any) => React.ReactNode;
-// }> = ({ children }) => {
 export const Connect = () => {
   const [connected, setConnected] = useState(false);
   const [validNetwork, setValidNetwork] = useState(false);
@@ -109,13 +106,19 @@ export const Connect = () => {
 
   const child = useMemo<React.ReactNode>(() => {
     if (!account || !provider) {
-      return null;
+      return (
+        <div>
+            <button onClick={connect}>
+              Connect
+            </button>
+        </div>
+      );
     }
 
     if (!validNetwork) {
       return (
         <div>
-            <button className="Connect__button" onClick={switchNetwork}>
+            <button onClick={switchNetwork}>
               Switch to Inco
             </button>
         </div>
@@ -133,12 +136,12 @@ export const Connect = () => {
   }, [account, provider, validNetwork, switchNetwork, connected, connect, formatAddress]);
 
   if (error) {
-    return <p>No wallet has been found.</p>;
+    return <p>No wallet found</p>;
   }
 
   return (
     <>
-      <div className="Connect__child">{child}</div>
+      <div>{child}</div>
     </>
   );
 };

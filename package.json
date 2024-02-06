@@ -1,5 +1,5 @@
 {
-  "name": "fhevmjs-react-template",
+  "name": "in-theory-games",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "ethers": "^6.6.4",
+    "ethers-decode-error": "^2.1.1",
     "prettier": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
