@@ -35,7 +35,7 @@ export const EnterGameButton = () => {
         // check if the player has already submitted an entry
         const firstPlayCheck = await ttgContract.entries(signer);
         console.log(firstPlayCheck);
-        if (firstPlayCheck !== 0) {alert('Player already has a submission')};
+        if (firstPlayCheck.toString() !== "0") {alert('Player already has a submission')};
 
         // check if the game has ended
         const gameOverCheck = await ttgContract.gameOver();
