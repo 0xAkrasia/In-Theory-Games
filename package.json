@@ -1,4 +1,5 @@
 {
+  "homepage": "https://0xakrasia.github.io/In-Theory-Games/",
   "name": "in-theory-games",
   "private": true,
   "version": "0.0.0",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@privy-io/react-auth": "^1.55.2",
@@ -31,6 +34,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
     "fhevmjs": "^0.2.2",
+    "gh-pages": "^6.1.1",
     "typescript": "^5.0.2",
     "vite": "^5.0.4"
   }
