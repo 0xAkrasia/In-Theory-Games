@@ -1,8 +1,9 @@
 import React, { useState, useEffect, HTMLAttributes } from 'react';
 import { ethers } from 'ethers';
+import contractAddresses from '../Contracts/contractAddresses.json';
 
 const provider = new ethers.JsonRpcProvider(`https://evm-rpc.inco.network`);
-const address = '0x1a83f1d0ea8e2a2925B2062843CF82bAff516762';
+const contractAddress = contractAddresses[0].twoThirdsGame_vInco;
 
 interface FetchBalanceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -10,7 +11,7 @@ export const FetchBalance: React.FC<FetchBalanceProps> = (props) => {
     const [balance, setBalance] = useState('');
 
     useEffect(() => {
-        const fetchBalance = async () => {
+        const fetchBalance = async (address: string) => {
             try {
                 const rawBalance = await provider.getBalance(address);
                 const formattedBal = ethers.formatEther(rawBalance);
@@ -21,7 +22,7 @@ export const FetchBalance: React.FC<FetchBalanceProps> = (props) => {
             }
         };
 
-        fetchBalance();
+        fetchBalance(contractAddress);
     }, []);
 
     const { className, ...rest } = props;

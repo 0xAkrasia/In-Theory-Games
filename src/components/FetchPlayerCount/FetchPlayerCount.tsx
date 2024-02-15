@@ -1,24 +1,25 @@
-import React, { useState, useEffect, HTMLAttributes } from 'react';
+import { useState, useEffect} from 'react';
 import { ethers } from 'ethers';
 import twoThirdsGameABI from '../Contracts/twoThirdsGame_vInco_ABI.json';
+import contractAddresses from '../Contracts/contractAddresses.json';
 
 const provider = new ethers.JsonRpcProvider(`https://evm-rpc.inco.network`);
+
 const contractABI = twoThirdsGameABI;
-const ContractAddress = '0x1a83f1d0ea8e2a2925B2062843CF82bAff516762';
+const contractAddress = contractAddresses[0].twoThirdsGame_vInco;
+const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
-const contract = new ethers.Contract(ContractAddress, contractABI, provider);
-
-interface FetchPlayerCountProps extends HTMLAttributes<HTMLDivElement> {}
-
-export const FetchPlayerCount: React.FC<FetchPlayerCountProps> = (props) => {
+export const FetchPlayerCount = () => {
     const [playerCount, setPlayerCount] = useState('');
 
     useEffect(() => {
         const fetchPlayerCount = async () => {
             try {
                 const rawPlayerCount = await contract.playerCount();
-                setPlayerCount(rawPlayerCount.toString());
+                const formattedPlayerCount = new Intl.NumberFormat().format(rawPlayerCount);
+                setPlayerCount(formattedPlayerCount);
             } catch (error) {
+                console.error('Failed to fetch player count:', error);
                 setPlayerCount('Error');
             }
         };
@@ -26,10 +27,5 @@ export const FetchPlayerCount: React.FC<FetchPlayerCountProps> = (props) => {
         fetchPlayerCount();
     }, []);
 
-    // Destructure the className from props
-    const { className, ...rest } = props;
-
-    return (
-        <div className={className} {...rest}>{playerCount} players so far</div>
-    );
+    return playerCount;
 };

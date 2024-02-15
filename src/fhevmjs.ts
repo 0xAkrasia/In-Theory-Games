@@ -1,3 +1,4 @@
+import { EIP1193Provider } from '@privy-io/react-auth';
 import { BrowserProvider } from 'ethers';
 import { initFhevm, createInstance, FhevmInstance } from 'fhevmjs';
 
@@ -7,29 +8,30 @@ export const init = async () => {
 
 let instance: FhevmInstance;
 
-export const createFhevmInstance = async () => {
-  const provider = new BrowserProvider(window.ethereum);
-  const network = await provider.getNetwork();
-  const chainId = +network.chainId.toString();
-  const publicKey = await provider.call({
+export const createFhevmInstance = async (p: BrowserProvider) => {
+  const publicKey = await p.call({
     from: null,
-    to: '0x0000000000000000000000000000000000000044',
+    to: "0x0000000000000000000000000000000000000044",
   });
-  instance = await createInstance({ chainId, publicKey });
+  instance = await createInstance({ chainId: 9090, publicKey });
 };
 
-export const getTokenSignature = async (contractAddress: string, userAddress: string) => {
-  if (getInstance().hasKeypair(contractAddress)) {
-    return getInstance().getTokenSignature(contractAddress)!;
-  } else {
-    const { publicKey, token } = getInstance().generateToken({ verifyingContract: contractAddress });
-    const params = [userAddress, JSON.stringify(token)];
-    const signature: string = await window.ethereum.request({ method: 'eth_signTypedData_v4', params });
-    getInstance().setTokenSignature(contractAddress, signature);
-    return { signature, publicKey };
-  }
-};
-
-export const getInstance = () => {
+export const getInstance = async (p: BrowserProvider) => {
+  await init();
+  await createFhevmInstance(p);
   return instance;
+};
+
+export const getTokenSignature = async (contractAddress: string, userAddress: string, provider: EIP1193Provider) => {
+  // const instance = await createInstance({ chainId, publicKey });
+  const { publicKey, token } = instance.generateToken({
+    verifyingContract: contractAddress,
+  });
+  const params = [userAddress, JSON.stringify(token)];
+  const signature = await provider.request({
+    method: "eth_signTypedData_v4",
+    params,
+  });
+  instance.setTokenSignature(contractAddress, signature);
+  return { signature, publicKey };
 };
