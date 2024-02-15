@@ -1,5 +1,5 @@
 {
-  "homepage": "https://0xakrasia.github.io/In-Theory-Games/",
+  "homepage": "https://0xAkrasia.github.io/In-Theory-Games/",
   "name": "in-theory-games",
   "private": true,
   "version": "0.0.0",
@@ -10,7 +10,7 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@privy-io/react-auth": "^1.55.2",
