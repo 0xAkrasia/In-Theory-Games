@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import twoThirdsGameABI from '../Contracts/twoThirdsGame_vInco_ABI.json';
 import contractAddresses from '../Contracts/contractAddresses.json';
 
-const provider = new ethers.JsonRpcProvider(`https://evm-rpc.inco.network`);
+const provider = new ethers.JsonRpcProvider(`https://testnet.inco.org`);
 
 const contractABI = twoThirdsGameABI;
 const contractAddress = contractAddresses[0].twoThirdsGame_vInco;
@@ -16,11 +16,14 @@ export const FetchPlayerCount = () => {
         const fetchPlayerCount = async () => {
             try {
                 const rawPlayerCount = await contract.playerCount();
-                const formattedPlayerCount = new Intl.NumberFormat().format(rawPlayerCount);
+                const stringPlayerCount = Intl.NumberFormat().format(rawPlayerCount)
+                const formattedPlayerCount = stringPlayerCount === "1"
+                    ? '1 Player'
+                    : stringPlayerCount + " Players";
                 setPlayerCount(formattedPlayerCount);
             } catch (error) {
                 console.error('Failed to fetch player count:', error);
-                setPlayerCount('Error');
+                setPlayerCount('-- Players');
             }
         };
 

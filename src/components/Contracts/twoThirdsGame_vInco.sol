@@ -76,13 +76,22 @@ contract TwoThirdsGame is EIP712WithModifier {
         winChecked[player] = true;
     }
 
-    function reencryptEntry(address player, bytes32 publicKey, bytes calldata signature)
+    function reencryptSelf(bytes32 publicKey, bytes calldata signature)
+        public
+        view
+        onlySignedPublicKey(publicKey, signature)
+        returns (bytes memory)
+    {
+        return TFHE.reencrypt(entries[msg.sender], publicKey, 0);
+    }
+
+    function reencryptAny(address player, bytes32 publicKey, bytes calldata signature)
         public
         view
         onlySignedPublicKey(publicKey, signature)
         gameEnded
         returns (bytes memory)
     {
-        return TFHE.reencrypt(entries[player], publicKey);
+        return TFHE.reencrypt(entries[player], publicKey, 0);
     }
 }

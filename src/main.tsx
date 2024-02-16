@@ -3,34 +3,34 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import {PrivyProvider} from '@privy-io/react-auth';
 import { defineChain } from 'viem'
-let privy_key = "clsay39yw04tv13s57t7fig9f"
+let privy_key = import.meta.env.VITE_PRIVY_KEY;
 
 export const inco = defineChain({
   id: 9090,
-  name: 'Inco',
-  network: 'Inco Network',
+  name: 'Inco Network Testnet',
+  network: 'Inco Network Testnet',
   nativeCurrency: {
     decimals: 18,
-    name: 'Inco',
+    name: 'INCO',
     symbol: 'INCO',
   },
   rpcUrls: {
     default: {
-        http: ['https://evm-rpc.inco.network/']
+        http: ['https://testnet.inco.org']
     },
     public: {
-        http: ['https://evm-rpc.inco.network/']
+        http: ['https://testnet.inco.org']
     },
   },
   blockExplorers: {
-    default: { name: 'Explorer', url: 'https://explorer.inco.network/' },
+    default: { name: 'Explorer', url: 'https://explorer.inco.org/' },
   },
 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <PrivyProvider
-      appId={privy_key}
+      appId={privy_key || ''}
       config={{
           loginMethods: ['wallet'],
           defaultChain: inco,

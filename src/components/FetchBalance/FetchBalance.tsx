@@ -2,7 +2,7 @@ import React, { useState, useEffect, HTMLAttributes } from 'react';
 import { ethers } from 'ethers';
 import contractAddresses from '../Contracts/contractAddresses.json';
 
-const provider = new ethers.JsonRpcProvider(`https://evm-rpc.inco.network`);
+const provider = new ethers.JsonRpcProvider(`https://testnet.inco.org`);
 const contractAddress = contractAddresses[0].twoThirdsGame_vInco;
 
 interface FetchBalanceProps extends HTMLAttributes<HTMLDivElement> {}

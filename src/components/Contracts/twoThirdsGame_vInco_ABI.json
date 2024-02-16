@@ -1,13 +1,6 @@
 [
 	{
 		"inputs": [],
-		"name": "determineSolution",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -39,19 +32,6 @@
 		"type": "error"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "bytes",
-				"name": "encryptedValue",
-				"type": "bytes"
-			}
-		],
-		"name": "enterGame",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "InvalidShortString",
 		"type": "error"
@@ -75,20 +55,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "endGame",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "player",
-				"type": "address"
-			}
-		],
-		"name": "winCheck",
+		"name": "determineSolution",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -134,6 +101,26 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "endGame",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes",
+				"name": "encryptedValue",
+				"type": "bytes"
+			}
+		],
+		"name": "enterGame",
+		"outputs": [],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -231,7 +218,31 @@
 				"type": "bytes"
 			}
 		],
-		"name": "reencryptEntry",
+		"name": "reencryptAny",
+		"outputs": [
+			{
+				"internalType": "bytes",
+				"name": "",
+				"type": "bytes"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "publicKey",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bytes",
+				"name": "signature",
+				"type": "bytes"
+			}
+		],
+		"name": "reencryptSelf",
 		"outputs": [
 			{
 				"internalType": "bytes",
@@ -253,6 +264,19 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "player",
+				"type": "address"
+			}
+		],
+		"name": "winCheck",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{

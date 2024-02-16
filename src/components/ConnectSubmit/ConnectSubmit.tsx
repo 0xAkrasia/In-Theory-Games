@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePrivy, useWallets } from '@privy-io/react-auth';
-import { BrowserProvider, ethers} from 'ethers';
+import { BrowserProvider, Contract, formatEther} from 'ethers';
 import twoThirdsGameABI from '../Contracts/twoThirdsGame_vInco_ABI.json';
 import { getInstance } from '../../fhevmjs';
 import { ErrorDecoder } from 'ethers-decode-error'
@@ -12,14 +12,14 @@ const contractABI = twoThirdsGameABI;
 
 const fetchBalance = async (provider: any, address: string) => {
     const rawBalance = await provider.getBalance(address);
-    const bal = ethers.formatEther(rawBalance);
+    const bal = formatEther(rawBalance);
     const formattedBal = parseFloat(bal);
 
     return formattedBal;
 };
 
 async function fundWallet(walletAddress: string): Promise<boolean> {
-    const response = await fetch('https://faucet.inco.network/api/get-faucet', {
+    const response = await fetch('https://faucet.testnet.inco.org/api/get-faucet', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -38,15 +38,15 @@ async function faucet() {
     const w = wallets[0];
     await w.switchChain(9090);
 
-    const currentWallet = await wallets[0]?.getEthereumProvider();
-    const bp = new BrowserProvider(currentWallet);
+    const eipProvider = await wallets[0]?.getEthereumProvider();
+    const bp = new BrowserProvider(eipProvider);
 
     const signer = await bp.getSigner();
     const address = await signer.getAddress();
 
     const bal = await fetchBalance(bp, address);
 
-    if (bal < 1e18) {
+    if (bal < 3e15) {
         fundWallet(address);
     };
 };
@@ -72,16 +72,30 @@ export const ConnectSubmit = () => {
 
     const [alreadySubmitted, setAlreadySubmitted] = useState(false);
 
-    const submissionCheck = async () => {
-        const currentWallet = await wallets[0]?.getEthereumProvider();
-        const bp = new BrowserProvider(currentWallet);
-        const signer = await bp.getSigner();
-        const ttgContract = new ethers.Contract(contractAddress, contractABI, signer);
-        const firstPlayCheck = await ttgContract.entries(signer);
-        if (firstPlayCheck.toString() !== "0") {setAlreadySubmitted(true)};
-    };
+    useEffect(() => {
+        const submissionCheck = async () => {
+            try {
+                const currentWallet = await wallets[0]?.getEthereumProvider();
+                const bp = new BrowserProvider(currentWallet);
+                const signer = await bp.getSigner();
+                const ttgContract = new Contract(contractAddress, contractABI, signer);
+                const firstPlayCheck = await ttgContract.entries(signer);
+                if (firstPlayCheck.toString() !== "0") {
+                    setAlreadySubmitted(true);
+                } else {
+                    setAlreadySubmitted(false);
+                }
+            } catch (error) {
+                console.error("Error checking submission:", error);
+            }
+        };
 
-    submissionCheck();
+        // Start the interval
+        const intervalId = setInterval(submissionCheck, 2000); // runs every 1 second
+
+        // Clean up the interval on component unmount
+        return () => clearInterval(intervalId);
+    }, []);
 
     const handleClick = async () => {
         try {
@@ -93,7 +107,7 @@ export const ConnectSubmit = () => {
             if (instance === undefined) {alert('Please connect to Inco')}
 
             // create contract object and execute transaction
-            const ttgContract = new ethers.Contract(contractAddress, contractABI, signer);
+            const ttgContract = new Contract(contractAddress, contractABI, signer);
     
             // check if the player entry is a whole number between 1 and 100
             const value = parseInt(entry, 10);
@@ -165,7 +179,7 @@ export const ConnectSubmit = () => {
                 <div className="w-layout-vflex main-content">
                     <div className="w-layout-vflex user-entry">
                         <p className="paragraph tagline">
-                            Your guess
+                            Your entry
                         </p>
                         <p className="display">
                             {entry}
