@@ -10,7 +10,6 @@ import { Sculpture } from './components/Sculpture';
 import { ConnectSubmit } from './components/ConnectSubmit';
 import { PlayersAndTech } from './components/PlayersAndTech';
 import { Footer } from './components/Footer';
-import { LogoutButton } from './components/LogoutButton';
 
 function App() {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -56,7 +55,6 @@ function App() {
       <Navigation/>
       <Sculpture/>
       <ConnectSubmit/>
-      <LogoutButton/>
       <PlayersAndTech/>
       <Footer/>
     </>

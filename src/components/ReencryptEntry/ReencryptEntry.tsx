@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { BrowserProvider, Contract, JsonRpcProvider } from 'ethers';
 import twoThirdsGameABI from '../Contracts/twoThirdsGame_vInco_ABI.json';
 import contractAddresses from '../Contracts/contractAddresses.json';
-import { getInstance, getTokenSignature } from '../../fhevmjs';
+import { getInstance } from '../../fhevmjs';
 import { useWallets } from '@privy-io/react-auth';
 
 export const ReencryptEntry = () => {
