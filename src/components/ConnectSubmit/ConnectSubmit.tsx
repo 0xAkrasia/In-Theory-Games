@@ -46,7 +46,7 @@ async function faucet() {
 
     const bal = await fetchBalance(bp, address);
 
-    if (bal < 3e15) {
+    if (bal < 3e14) {
         fundWallet(address);
     };
 };
@@ -87,11 +87,11 @@ export const ConnectSubmit = () => {
                 }
             } catch (error) {
                 console.error("Error checking submission:", error);
-            }
+            };
         };
 
         // Start the interval
-        const intervalId = setInterval(submissionCheck, 2000); // runs every 1 second
+        const intervalId = setInterval(submissionCheck, 5000); // runs every 5 sec
 
         // Clean up the interval on component unmount
         return () => clearInterval(intervalId);
