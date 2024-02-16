@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import {PrivyProvider} from '@privy-io/react-auth';
 import { defineChain } from 'viem'
-let privy_key = import.meta.env.VITE_PRIVY_KEY;
+// let privy_key = import.meta.env.VITE_PRIVY_KEY;
 
 export const inco = defineChain({
   id: 9090,
@@ -30,7 +30,7 @@ export const inco = defineChain({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <PrivyProvider
-      appId={privy_key || ''}
+      appId={"clsay39yw04tv13s57t7fig9f"}
       config={{
           loginMethods: ['wallet'],
           defaultChain: inco,
