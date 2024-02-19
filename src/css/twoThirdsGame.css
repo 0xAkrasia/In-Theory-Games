@@ -13,6 +13,25 @@
   --placeholder-text: #616161;
 }
 
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 90%;
+  border-left-color: #3673f5;
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
 .w-layout-hflex {
   flex-direction: row;
   align-items: flex-start;

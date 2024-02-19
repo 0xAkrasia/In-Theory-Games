@@ -7,8 +7,8 @@ import { defineChain } from 'viem'
 
 export const inco = defineChain({
   id: 9090,
-  name: 'Inco Network Testnet',
-  network: 'Inco Network Testnet',
+  name: 'Inco Gentry Testnet',
+  network: 'Inco Gentry Testnet',
   nativeCurrency: {
     decimals: 18,
     name: 'INCO',
@@ -23,7 +23,7 @@ export const inco = defineChain({
     },
   },
   blockExplorers: {
-    default: { name: 'Explorer', url: 'https://explorer.inco.org/' },
+    default: { name: 'Explorer', url: 'https://explorer.testnet.inco.org/'},
   },
 })
 

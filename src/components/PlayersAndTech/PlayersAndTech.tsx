@@ -6,7 +6,7 @@ const contractAddress = contractAddresses[0].twoThirdsGame_vInco;
 export const PlayersAndTech = () => {
     return (
         <div className="bottom-wrapper main-content w-layout-hflex secondary-actions">
-            <a href={"https://explorer.inco.org/contract/" + contractAddress} target="_blank" className="primary-button link w-inline-block">
+            <a href={"https://explorer.testnet.inco.org/address/" + contractAddress} target="_blank" className="primary-button link w-inline-block">
                 <div className="text-block">
                     <FetchPlayerCount/>
                 </div>

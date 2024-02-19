@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserProvider, Contract, JsonRpcProvider } from 'ethers';
+import { BrowserProvider, Contract } from 'ethers';
 import twoThirdsGameABI from '../Contracts/twoThirdsGame_vInco_ABI.json';
 import contractAddresses from '../Contracts/contractAddresses.json';
 import { getInstance } from '../../fhevmjs';
@@ -11,8 +11,7 @@ export const ReencryptEntry = () => {
     useEffect( () => {
         const fetchReencryptedEntry = async () => {
             try {
-                const provider = new JsonRpcProvider(`https://testnet.inco.org`);
-
+                // create contract and fhevmjs instance
                 const contractABI = twoThirdsGameABI;
                 const contractAddress = contractAddresses[0].twoThirdsGame_vInco;
 
@@ -20,17 +19,18 @@ export const ReencryptEntry = () => {
                 const bp = new BrowserProvider(eipProvider);
                 const signer = await bp.getSigner();
                 const userAddress = await signer.getAddress();
+                const ttgContract = new Contract(contractAddress, contractABI, bp);
 
                 const instance = await getInstance(bp);
                 if (instance === undefined) {alert('Please connect to Inco')}
-            
-                const ttgContract = new Contract(contractAddress, contractABI, provider);
 
                 // Generate token to decrypt
                 const generatedToken = instance.generatePublicKey({
+                    chainId: 9090,
+                    name: 'Authorization token',
+                    // version: '1',
                     verifyingContract: contractAddress,
                 });
-                console.log(generatedToken);
 
                 // Sign the public key
                 const params = [userAddress, JSON.stringify(generatedToken.eip712)];
@@ -38,13 +38,8 @@ export const ReencryptEntry = () => {
                     method: 'eth_signTypedData_v4',
                     params,
                 });
-                // instance.setPublicKeySignature(contractAddress, signature);
 
-                // call method
-                console.log(generatedToken.publicKey);
-                console.log(signature);
                 const encryptedEntry = await ttgContract.reencryptSelf(generatedToken.publicKey, signature);
-                console.log(encryptedEntry);
 
                 // decrypt entry
                 const x = instance.decrypt(contractAddress, encryptedEntry);
