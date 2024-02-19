@@ -49,7 +49,7 @@ function App() {
         <meta content="Two Thirds Game" property="twitter:title"/>
         <link href="https://fonts.googleapis.com" rel="preconnect"/>
         <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous"/>
-        <link rel="icon" href=".images/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="https://raw.githubusercontent.com/0xAkrasia/In-Theory-Games/main/src/images/favicon.ico" type="image/x-icon"/>
         <title>In Theory Games</title>
       </Helmet>
       <Navigation/>

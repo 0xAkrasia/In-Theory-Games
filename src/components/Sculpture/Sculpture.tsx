@@ -62,7 +62,7 @@ export const Sculpture = () => {
               Submit a whole number between 1 and 100. The players who guess closest to two thirds of the average win a $1,000 prize.
             </p>
             <p className="timer">
-                <CountdownTimer targetDate={new Date('2024-03-04T00:00:00').toISOString()} /> till reveal
+              <CountdownTimer targetDate={new Date('2024-03-04T00:00:00').toISOString()} /> till reveal
             </p>
         </div>
     </div>

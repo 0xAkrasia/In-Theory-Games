@@ -17,7 +17,11 @@ export const ConnectSubmit = () => {
     const [alreadySubmitted, setAlreadySubmitted] = useState(false);
 
     useEffect(() => {
-        // Ensure wallets are ready
+        
+        if (alreadySubmitted) {
+            return;
+        }
+
         const initialSetupAndCheck = async () => {
             if(wallets.length > 0 && await wallets[0]?.isConnected()) {
                 const currentWallet = await wallets[0]?.getEthereumProvider();
@@ -28,6 +32,7 @@ export const ConnectSubmit = () => {
         initialSetupAndCheck();
 
         const submissionCheck = async () => {
+
             try {
                 if(wallets.length > 0 && await wallets[0]?.isConnected()) {
                     const currentWallet = await wallets[0]?.getEthereumProvider();
@@ -46,9 +51,9 @@ export const ConnectSubmit = () => {
             }
         };
 
-        const intervalId = setInterval(submissionCheck, 2500);
+        const intervalId = setInterval(submissionCheck, 2000);
         return () => clearInterval(intervalId);
-    }, [wallets]); // re-run the effect when wallets change
+    }, [wallets, alreadySubmitted]); // re-run the effect when wallets or alreadySubmitted change
 
     if (!authenticated) {
         return <LoginButton/>;

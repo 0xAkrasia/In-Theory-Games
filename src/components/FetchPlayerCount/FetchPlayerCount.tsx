@@ -27,7 +27,8 @@ export const FetchPlayerCount = () => {
             }
         };
 
-        fetchPlayerCount();
+        const intervalId = setInterval(fetchPlayerCount, 2000);
+        return () => clearInterval(intervalId);
     }, []);
 
     return playerCount;

@@ -4,6 +4,9 @@ export const SubmissionComplete = () => {
     return(
         <div className="w-layout-vflex thin-wrapper">
             <div className="w-layout-vflex main-content">
+            <p className="paragraph">
+              Submission Received
+            </p>
                 <div className="w-layout-vflex user-entry">
                     <p className="paragraph tagline">
                         Your entry

@@ -37,10 +37,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           supportedChains: [inco],
           appearance: {
               theme: 'dark',
-              accentColor: '#676FFF',
-              logo: './images/sculpture_no_art.png',
+              accentColor: '#3673f5',
+              logo: 'https://raw.githubusercontent.com/0xAkrasia/In-Theory-Games/main/src/images/sculpture_no_art.png',
               showWalletLoginFirst: true,
-              walletList: ['detected_wallets', 'metamask', 'coinbase_wallet', 'rainbow', 'wallet_connect'],
+              walletList: ['detected_wallets', 'metamask', 'phantom', 'coinbase_wallet', 'wallet_connect'],
           },
       }}
     >
