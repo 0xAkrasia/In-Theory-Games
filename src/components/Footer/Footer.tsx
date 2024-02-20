@@ -10,7 +10,7 @@ export const Footer = () => {
           <img src={Akrasia} alt="0xAkrasia"/>
         </a>
         <img src={x} alt="x" style={{ height: "25%" }}/>
-        <a href="https://inco.network" target="_blank" rel="noreferrer">
+        <a href="https://inco.org" target="_blank" rel="noreferrer">
           <img src={inco_logo} alt="Inco Network"/>
         </a>
       </div>

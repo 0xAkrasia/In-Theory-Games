@@ -62,7 +62,7 @@ export const SubmitEntry = () => {
             const encryptedUint32 = instance.encrypt32(parseInt(entry, 10));
             const tx = await ttgContract.enterGame(encryptedUint32);
             await tx.wait();
-
+ 
             } catch (err) {
                 const errorDecoder = ErrorDecoder.create()
                 const { reason, type } = await errorDecoder.decode(err)
