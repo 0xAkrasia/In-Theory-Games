@@ -20,6 +20,14 @@ export const SubmitEntry = () => {
 
     const handleSubmit = async () => {
         setLoading(true);
+        try {
+            const w = wallets[0];
+            if (w.chainId !== "eip155:9090") {
+                await w.switchChain(9090);
+            };
+        } finally {
+            console.log('On Inco');
+        }
         try{
             const currentWallet = await wallets[0]?.getEthereumProvider();
             const bp = new BrowserProvider(currentWallet);
