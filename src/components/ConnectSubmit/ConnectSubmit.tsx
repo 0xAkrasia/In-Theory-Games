@@ -14,6 +14,7 @@ export const ConnectSubmit = () => {
     const { authenticated } = usePrivy();
     const { wallets } = useWallets();
 
+    const [entry, setEntry] = useState(null);
     const [alreadySubmitted, setAlreadySubmitted] = useState(false);
 
     useEffect(() => {
@@ -58,9 +59,9 @@ export const ConnectSubmit = () => {
     if (!authenticated) {
         return <LoginButton/>;
     } else if (authenticated && !alreadySubmitted) {
-        return <SubmitEntry/>;
+        return <SubmitEntry onEntrySubmit={setEntry}/>;
     } else if (authenticated && alreadySubmitted) {
-        return <SubmissionComplete/>;
+        return <SubmissionComplete entry={entry}/>;
     } else {
         return <div> 'Please refresh page' </div>;
     }

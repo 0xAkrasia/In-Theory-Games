@@ -10,16 +10,18 @@ import { faucet } from '../Faucet';
 const contractAddress = contractAddresses[0].twoThirdsGame_vInco;
 const contractABI = twoThirdsGameABI;
 
-export const SubmitEntry = () => {
+export const SubmitEntry = (props: any) => {
 
     const [loading, setLoading] = useState(false);
     const [entry, setEntry] = useState('');
     const { wallets } = useWallets();
+    props.onEntrySubmit(entry);
 
     faucet();
 
     const handleSubmit = async () => {
         setLoading(true);
+
         try {
             const w = wallets[0];
             if (w.chainId !== "eip155:9090") {
@@ -28,6 +30,7 @@ export const SubmitEntry = () => {
         } finally {
             console.log('On Inco');
         }
+
         try{
             const currentWallet = await wallets[0]?.getEthereumProvider();
             const bp = new BrowserProvider(currentWallet);
@@ -70,6 +73,8 @@ export const SubmitEntry = () => {
             const encryptedUint32 = instance.encrypt32(parseInt(entry, 10));
             const tx = await ttgContract.enterGame(encryptedUint32);
             await tx.wait();
+
+            props.onEntrySubmit(entry); // pass entry to parent component
  
             } catch (err) {
                 const errorDecoder = ErrorDecoder.create()

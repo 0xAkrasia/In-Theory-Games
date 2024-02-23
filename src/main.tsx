@@ -32,7 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <PrivyProvider
       appId={"clsay39yw04tv13s57t7fig9f"}
       config={{
-          loginMethods: ['wallet', 'email', 'google', 'apple', 'discord'],
+          loginMethods: ['email', 'google', 'discord', 'wallet'],
           defaultChain: inco,
           supportedChains: [inco],
           appearance: {
@@ -40,7 +40,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               accentColor: '#3673f5',
               logo: 'https://raw.githubusercontent.com/0xAkrasia/In-Theory-Games/main/src/images/sculpture_no_art.png',
               showWalletLoginFirst: false,
-              walletList: ['metamask', 'coinbase_wallet', 'wallet_connect'],
+              walletList: ['coinbase_wallet', 'wallet_connect'],
           },
       }}
     >
