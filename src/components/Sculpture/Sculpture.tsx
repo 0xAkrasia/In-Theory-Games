@@ -59,7 +59,7 @@ export const Sculpture = () => {
             className="sculpture"/>
         <div className="w-layout-vflex main-content">
             <p className="paragraph">
-              Submit a whole number between 1 and 100. The players who guess closest to two thirds of the average win a $1,000 prize.
+              Submit a whole number between 1 and 100. The player who guesses closest to two thirds of the average wins.
             </p>
             <p className="timer">
               <CountdownTimer targetDate={new Date('2024-03-04T00:00:00').toISOString()} /> till reveal
