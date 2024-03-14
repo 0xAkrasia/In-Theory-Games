@@ -3,7 +3,7 @@
   "name": "in-theory-games",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -14,14 +14,18 @@
   },
   "dependencies": {
     "@privy-io/react-auth": "^1.55.2",
+    "@truffle/hdwallet-provider": "^2.1.15",
     "dotenv": "^16.4.4",
+    "eth-sig-util": "^3.0.1",
+    "ethereumjs-util": "^7.1.5",
     "ethers": "^6.6.4",
     "ethers-decode-error": "^2.1.1",
+    "fhevm": "^0.3.0",
+    "fhevmjs": "^0.4.0-3",
     "prettier": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "fhevmjs": "^0.4.0-3",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {

@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 .env
+
+mne
+build
+key.txt
