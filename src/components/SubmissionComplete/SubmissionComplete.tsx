@@ -34,12 +34,12 @@ export const SubmissionComplete = (props: any) => {
                             {props.entry}
                         </p>
                     </div>
-                    <a href="#" className="primary-button w-inline-block">
+                    {/* <a href="#" className="primary-button w-inline-block">
                         <div className="button-text">
                             Claim Poap
                         </div>
                         <img src={fi_arrow_up_right} loading="lazy" width={20} height={20} alt="" className="chevron" />
-                    </a>
+                    </a> */}
                 </div>
             </div>
         );

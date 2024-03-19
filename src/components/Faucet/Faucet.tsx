@@ -19,7 +19,7 @@ async function fundWallet(walletAddress: string): Promise<boolean> {
         address: walletAddress
       })
     });
-  
+
     return response.ok;
 };
 

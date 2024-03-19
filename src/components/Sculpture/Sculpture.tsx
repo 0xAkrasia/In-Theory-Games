@@ -46,7 +46,7 @@ function CountdownTimer({ targetDate }: { targetDate: string }) {
 
   return (
       <>
-        {Object.keys(timeLeft).length ? formattedTimeLeft : 'Game Over!'}
+        {Object.keys(timeLeft).length ? formattedTimeLeft + ` till reveal at ETHCC!`: 'Game Over!'}
       </>
   );
 }
@@ -62,9 +62,9 @@ export const Sculpture = () => {
               Submit a whole number between 1 and 100. The player who guesses closest to two thirds of the average wins.
             </p>
             <p className="timer">
-              <CountdownTimer targetDate={new Date('2024-03-04T00:00:00').toISOString()} /> till reveal
+              <CountdownTimer targetDate={new Date('2024-07-12T00:00:00').toISOString()} />
             </p>
         </div>
-    </div>
+    </div> 
   );
 };

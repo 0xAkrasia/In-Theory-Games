@@ -19,7 +19,6 @@ export const createFhevmInstance = async (provider: BrowserProvider) => {
 
   const decoded = AbiCoder.defaultAbiCoder().decode(["bytes"], ret);
   const publicKey = decoded[0];
-
   instance = await createInstance({ chainId: 9090, publicKey });
 };
 

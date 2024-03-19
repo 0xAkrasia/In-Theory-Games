@@ -40,7 +40,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               accentColor: '#3673f5',
               logo: 'https://raw.githubusercontent.com/0xAkrasia/In-Theory-Games/main/src/images/sculpture_no_art.png',
               showWalletLoginFirst: false,
-              walletList: ['coinbase_wallet', 'wallet_connect'],
+              walletList: ['coinbase_wallet', 'wallet_connect', 'metamask'],
           },
       }}
     >
