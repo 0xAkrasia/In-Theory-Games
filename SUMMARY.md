@@ -1,3 +1,3 @@
 # Table of contents
 
-* [🔥 In Theory Games](README.md)
+* [🔥 Melee](README.md)
